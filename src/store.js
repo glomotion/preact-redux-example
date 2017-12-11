@@ -10,7 +10,7 @@ let ACTIONS = {
 	}),
 
 	REMOVE_TODO: ({ todos, ...state }, { todo }) => ({
-		todos: todos.filter( i => i!==todo ),
+		todos: todos.filter( i => i !== todo ),
 		...state
 	}),
 
