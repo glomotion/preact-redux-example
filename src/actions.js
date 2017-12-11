@@ -16,6 +16,7 @@ export function removeTodo(todo) {
 export function renameTodo(todo, newText) {
 	return {
 		type: 'RENAME_TODO',
-		todo, newText
+		todo, 
+		newText
 	};
 }
