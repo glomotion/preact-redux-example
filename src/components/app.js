@@ -20,9 +20,15 @@ export default class App extends Component {
 	};
 
 	updateText = (e) => {
+		console.log('state:', this.state, 'props:', this.props);
 		this.setState({ text: e.target.value });
 	};
 
+	componentDidMount() {
+		// console.log(this.state, this.props);
+	}
+
+	//   { this.props }, { this.state }
 	render({ todos }, { text }) {
 		return (
 			<div id="app">

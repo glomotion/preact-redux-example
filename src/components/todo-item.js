@@ -8,14 +8,11 @@ export default class TodoItem extends Component {
 
 	rename = () => {
 		let { onRename, todo } = this.props;
-		onRename(todo, 'hello world');
-		// console.log('rename!!', todo, onRename);
+		onRename(todo, "moo cow");
 	};
 
-	shouldComponentUpdate({ todo, onRemove, onRename }) {
-		return todo !== this.props.todo 
-			|| onRemove !== this.props.onRemove
-			|| onRename !== this.props.onRename;
+	shouldComponentUpdate({ todo }) {
+		return todo.id !== this.props.todo.id;
 	}
 
 	render({ todo }) {
