@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 let ACTIONS = {
-	ADD_TODO: ({ todos, ...state }, { text }) => ({
+	ADD_TODO: ({ todos, state }, { text }) => ({
 		todos: [...todos, {
 			id: Math.random().toString(36).substring(2),
 			text
@@ -9,12 +9,12 @@ let ACTIONS = {
 		...state
 	}),
 
-	REMOVE_TODO: ({ todos, ...state }, { todo }) => ({
+	REMOVE_TODO: ({ todos, state }, { todo }) => ({
 		todos: todos.filter( i => i !== todo ),
 		...state
 	}),
 
-	RENAME_TODO: ({ todos, ...state }, { todo, newText }) => {
+	RENAME_TODO: ({ todos, state }, { todo, newText }) => {
 		let newTodos = todos.map((t) => {
 			if (t.id === todo.id) {
 				t.text = newText;

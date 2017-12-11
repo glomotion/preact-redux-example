@@ -1,19 +1,19 @@
 import { h, Component } from 'preact';
+import { connect } from 'preact-redux';
+import reduce from '../reducers';
+import * as actions from '../actions';
 
+@connect(reduce, actions)
 export default class TodoItem extends Component {
 	remove = () => {
-		let { onRemove, todo } = this.props;
-		onRemove(todo);
+		let { todo } = this.props;
+		this.props.removeTodo(todo);
 	};
 
 	rename = () => {
-		let { onRename, todo } = this.props;
-		onRename(todo, "moo cow");
+		let { todo } = this.props;
+		this.props.renameTodo(todo, "moo cow");
 	};
-
-	shouldComponentUpdate({ todo }) {
-		return todo.id !== this.props.todo.id;
-	}
 
 	render({ todo }) {
 		return (
