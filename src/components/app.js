@@ -15,6 +15,10 @@ export default class App extends Component {
 		this.props.removeTodo(todo);
 	};
 
+	renameTodo = (todo, newText) => {
+		this.props.renameTodo(todo, newText);
+	};
+
 	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
@@ -23,11 +27,14 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<form onSubmit={this.addTodos} action="javascript:">
-					<input value={text} onInput={this.updateText} placeholder="New ToDo..." />
+					<input value={text} onInput={this.updateText} 
+						placeholder="New ToDo..." />
 				</form>
 				<ul>
 					{ todos.map(todo => (
-						<TodoItem key={todo.id} todo={todo} onRemove={this.removeTodo} />
+						<TodoItem key={todo.id} todo={todo} 
+							onRemove={this.removeTodo} 
+							onRename={this.renameTodo}/>
 					)) }
 				</ul>
 			</div>

@@ -6,8 +6,16 @@ export default class TodoItem extends Component {
 		onRemove(todo);
 	};
 
-	shouldComponentUpdate({ todo, onRemove }) {
-		return todo !== this.props.todo || onRemove !== this.props.onRemove;
+	rename = () => {
+		let { onRename, todo } = this.props;
+		onRename(todo, 'hello world');
+		// console.log('rename!!', todo, onRename);
+	};
+
+	shouldComponentUpdate({ todo, onRemove, onRename }) {
+		return todo !== this.props.todo 
+			|| onRemove !== this.props.onRemove
+			|| onRename !== this.props.onRename;
 	}
 
 	render({ todo }) {
@@ -15,6 +23,7 @@ export default class TodoItem extends Component {
 			<li>
 				<button onClick={this.remove}>×</button>
 				{ ' ' + todo.text }
+				<button onClick={this.rename}>&mdash;</button>
 			</li>
 		);
 	}

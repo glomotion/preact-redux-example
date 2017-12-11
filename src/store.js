@@ -12,7 +12,20 @@ let ACTIONS = {
 	REMOVE_TODO: ({ todos, ...state }, { todo }) => ({
 		todos: todos.filter( i => i!==todo ),
 		...state
-	})
+	}),
+
+	RENAME_TODO: ({ todos, ...state }, { todo, newText }) => {
+		let newTodos = todos.map((t) => {
+			if (t.id === todo.id) {
+				t.text = newText;
+
+				// @NOTE: gotta bump the id to let preact know to re-render...
+				t.id = Math.random().toString(36).substring(2);
+			}
+			return t;
+		});
+		return { todos: newTodos, ...state };
+	}
 };
 
 const INITIAL = {
