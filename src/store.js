@@ -22,7 +22,8 @@ let ACTIONS = {
 
 		// Returns new state:
 		// { todos, everything else }
-		return { ...prevState, 
+		return { 
+			...prevState, 
 			todos: prevState.todos.map((t) => {
 				if (t.id === action.todo.id) {
 					t.text = action.newText;
@@ -32,7 +33,7 @@ let ACTIONS = {
 				}
 				return t;
 			}),
-		}
+		};
 	}
 };
 
