@@ -14,17 +14,25 @@ let ACTIONS = {
 		...state
 	}),
 
-	RENAME_TODO: ({ todos, state }, { todo, newText }) => {
-		let newTodos = todos.map((t) => {
-			if (t.id === todo.id) {
-				t.text = newText;
 
-				// @NOTE: gotta bump the id to let preact know to re-render...
-				t.id = Math.random().toString(36).substring(2);
-			}
-			return t;
-		});
-		return { todos: newTodos, ...state };
+	//             { previous state }     { action }
+	// RENAME_TODO: ({ todos, state }, { todo, newText }) => {
+	RENAME_TODO: (prevState, action) => {
+		console.log(prevState, action);
+
+		// Returns new state:
+		// { todos, everything else }
+		return { ...prevState, 
+			todos: prevState.todos.map((t) => {
+				if (t.id === action.todo.id) {
+					t.text = action.newText;
+
+					// @NOTE: gotta bump the id to let preact know to re-render...
+					t.id = Math.random().toString(36).substring(2);
+				}
+				return t;
+			}),
+		}
 	}
 };
 
